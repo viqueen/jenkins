@@ -1,0 +1,2 @@
+language: java
+script: mvn -fae -e compile com.atlassian.maven.plugins:banned-packages-maven-plugin:1.0.1:scan -Dscanned="(hudson|jenkins).*" -Dbanned="com.google.common.(base|collect).*"
