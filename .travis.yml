@@ -3,7 +3,7 @@ services:
 
 before_install:
   - docker pull viqueen/jdk8:mosman
-  - docker run -it viqueen/jdk8:mosman --entry-point=/bin/bash
+  - docker run -it --entrypoint=/bin/bash viqueen/jdk8:mosman
 
 script:
-  - mvn -fae -e compile com.atlassian.maven.plugins:banned-packages-maven-plugin:1.0.1:scan -Dscanned="(hudson|jenkins).*" -Dbanned="com.google.common.(base|collect).*"
+  - mvn -fae -e compile com.atlassian.maven.plugins:banned-packages-maven-plugin:1.0.1:scan -Dscanned="(hudson|jenkins).*" -Dbanned="com.google.common.(base|collect).*" -DfailOnViolation=true
