@@ -1,9 +1,7 @@
-services:
-  - docker
+language: java
 
 before_install:
-  - docker pull viqueen/jdk8:mosman
-  - docker run -it --entrypoint=/bin/bash viqueen/jdk8:mosman
+  - mkdir -p ~/bin && curl -s https://bitbucket.org/mjensen/mvnvm/raw/master/mvn > ~/bin/mvn && chmod 0755 ~/bin/mvn
 
 script:
   - mvn -fae -e compile com.atlassian.maven.plugins:banned-packages-maven-plugin:1.0.1:scan -Dscanned="(hudson|jenkins).*" -Dbanned="com.google.common.(base|collect).*" -DfailOnViolation=true
