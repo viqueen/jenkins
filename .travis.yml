@@ -1,2 +1,9 @@
-language: java
-script: mvn -fae -e compile com.atlassian.maven.plugins:banned-packages-maven-plugin:1.0.1:scan -Dscanned="(hudson|jenkins).*" -Dbanned="com.google.common.(base|collect).*"
+services:
+  - docker
+
+before_install:
+  - docker pull viqueen/jdk8:mosman
+  - docker run -it viqueen/jdk8:mosman --entry-point=/bin/bash
+
+script:
+  - mvn -fae -e compile com.atlassian.maven.plugins:banned-packages-maven-plugin:1.0.1:scan -Dscanned="(hudson|jenkins).*" -Dbanned="com.google.common.(base|collect).*"
