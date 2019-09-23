@@ -17,7 +17,6 @@ package hudson.util.jna;
 
 import com.sun.jna.ptr.IntByReference;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.TreeMap;
@@ -76,7 +75,7 @@ public class RegistryKey {
      * @return int
      */
     private static int convertBufferToInt(byte[] buf) {
-        return (((int) (buf[0] & 0xff)) + (((int) (buf[1] & 0xff)) << 8) + (((int) (buf[2] & 0xff)) << 16) + (((int) (buf[3] & 0xff)) << 24));
+        return ((buf[0] & 0xff) + ((buf[1] & 0xff) << 8) + ((buf[2] & 0xff) << 16) + ((buf[3] & 0xff) << 24));
     }
 
     public String getStringValue(String valueName) {
